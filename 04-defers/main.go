@@ -56,9 +56,7 @@ func run() error {
 
 	case sig := <-signals:
 		log.Printf("%v signal received, shutting down", sig)
-		if err := srv.Shutdown(context.Background()); err != nil {
-			return fmt.Errorf("could not shutdown: %v", err)
-		}
+		srv.Shutdown(context.Background())
 	}
 
 	return nil

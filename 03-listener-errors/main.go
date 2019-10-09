@@ -50,9 +50,7 @@ func main() {
 
 	case sig := <-signals:
 		log.Printf("%v signal received, shutting down", sig)
-		if err := srv.Shutdown(context.Background()); err != nil {
-			log.Fatalf("could not shutdown: %v", err)
-		}
+		srv.Shutdown(context.Background())
 	}
 }
 

@@ -40,11 +40,9 @@ func main() {
 
 	// Block until a signal is received.
 	sig := <-signals
-	log.Printf("%v signal received, shutting down", sig)
 
-	if err := srv.Shutdown(context.Background()); err != nil {
-		log.Fatalf("could not shutdown: %v", err)
-	}
+	log.Printf("%v signal received, shutting down", sig)
+	srv.Shutdown(context.Background())
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
