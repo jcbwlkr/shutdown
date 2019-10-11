@@ -60,7 +60,7 @@ func run() error {
 		// Define the maximum time you are willing to wait for HTTP requests to
 		// finish. Keep in mind you have an overall deadline and there may be other
 		// cleanup code waiting to finish.
-		const gracePeriod = 2 * time.Second
+		const gracePeriod = 5 * time.Second
 		ctx, cancel := context.WithTimeout(context.Background(), gracePeriod)
 		defer cancel()
 
