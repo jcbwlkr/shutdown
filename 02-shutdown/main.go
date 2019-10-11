@@ -35,11 +35,11 @@ func main() {
 
 	// Create a channel where we will be notified of signals. Make sure it is
 	// buffered or the signal package might drop the send.
-	signals := make(chan os.Signal, 1)
-	signal.Notify(signals, os.Interrupt, syscall.SIGTERM, syscall.SIGHUP)
+	shutdown := make(chan os.Signal, 1)
+	signal.Notify(shutdown, os.Interrupt, syscall.SIGTERM, syscall.SIGHUP)
 
 	// Block until a signal is received.
-	sig := <-signals
+	sig := <-shutdown
 
 	log.Printf("%v signal received, shutting down", sig)
 	srv.Shutdown(context.Background())
